@@ -1,14 +1,41 @@
-const http = require('http');
+const express = require('express');
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const mysql = require('mysql');
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'server',
+  password: 'password',
+  database: 'db'
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+connection.connect((error) => {
+  if (error) {
+    console.error('Error connecting to database: ', error);
+  } else {
+    console.log('Connected to database');
+  }
+});
+
+
+const app = express();
+
+// Route to create a row in the database
+app.post('/create', (req, res) => {
+  // Code to create a row in the database
+});
+
+// Route to get a specific row from the database by username
+app.get('/get/:username', (req, res) => {
+  // Code to get a specific row from the database by username
+});
+
+// Route to get all rows from the database
+app.get('/get', (req, res) => {
+  // Code to get all rows from the database
+});
+
+// Start the server
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
 });
