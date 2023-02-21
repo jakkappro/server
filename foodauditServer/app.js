@@ -6,7 +6,8 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'server',
   password: 'password',
-  database: 'db'
+  database: 'db',
+  family: 4
 });
 
 connection.connect((error) => {
@@ -37,5 +38,5 @@ app.get('/get', (req, res) => {
 
 // Start the server
 app.listen(3001, () => {
-  console.log('Server running on port 3000');
+  console.log('Server running on port 3001');
 });
